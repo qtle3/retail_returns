@@ -1,5 +1,7 @@
 # retail store return policy
 
+return_policy = {}
+
 
 def main():
     print("This program if you are eligible to return your item at the store.")
