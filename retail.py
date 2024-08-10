@@ -20,7 +20,7 @@ def yes_no_input(prompt):
     while True:
         response = input(prompt).strip().lower()
         if response in ["yes", "no"]:
-            return response
+            return response == "yes"
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
@@ -31,7 +31,7 @@ def numeric_input(prompt):
         try:
             return int(input(prompt).strip())
         except ValueError:
-            print("Invalid input. Please enter an integer.")
+            print("Invalid input. Please enter an number.")
 
 
 # Function to log and print a message
@@ -74,7 +74,7 @@ def main():
 
     # Check if the item was a final sale
     if (
-        not yes_no_input("Was the item a final sale: yes/no? ")
+        yes_no_input("Was the item a final sale: yes/no? ")
         and not return_policy["final_sale"]
     ):
         log_and_print("Return denied: Item was a final sale.")
