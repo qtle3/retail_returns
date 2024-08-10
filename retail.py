@@ -37,10 +37,6 @@ def main():
     # ask the user if they have a receipt
     if not yes_no_input("Do you have a receipt: yes/no? "):
         log_and_print("You cannot return your item.")
-
-    # if the user does not have a receipt, they cannot return the item
-    if receipt == "no":
-        print("You cannot return your item.")
         return
 
     # ask the user if it has been past 90 days
