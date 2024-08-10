@@ -43,7 +43,7 @@ def log_and_print(message):
 
 def main():
     print("This program if you are eligible to return your item at the store.")
-    logging.info("return denied: customer does not have a receipt")
+    logging.info("Starting the return eligibility check.")
 
     # ask the user if they have a receipt
     if not yes_no_input("Do you have a receipt: yes/no? "):
