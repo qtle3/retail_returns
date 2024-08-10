@@ -15,6 +15,7 @@ return_policy = {
 }
 
 
+# Function to prompt the user for a yes/no response
 def yes_no_input(prompt):
     while True:
         response = input(prompt).strip().lower()
@@ -24,8 +25,8 @@ def yes_no_input(prompt):
             print("Invalid input. Please enter 'yes' or 'no'.")
 
 
+# Function to prompt the user for an integer value
 def numeric_input(prompt):
-    """Prompt the user for an integer value."""
     while True:
         try:
             return int(input(prompt).strip())
@@ -33,6 +34,7 @@ def numeric_input(prompt):
             print("Invalid input. Please enter an integer.")
 
 
+# Function to log and print a message
 def log_and_print(message):
     """Log the message and print it."""
     logging.info(message)
@@ -55,9 +57,19 @@ def main():
         return
 
     # ask the user if it is a food item
-    food = input("is it a food item: yes/no: ")
-    if food == "yes":
-        print("You cannot return your item.")
+    if (
+        yes_no_input("Is the item a food item: yes/no? ")
+        and not return_policy["food_return"]
+    ):
+        log_and_print("Return denied: Food Items are not returnable.")
+        return
+
+    # ask the user if the item is in original condition
+    if (
+        not yes_no_input("Is the item in originl condition: yes/no? ")
+        and not return_policy["original_condition"]
+    ):
+        log_and_print("Return denied: Item is not in original condition.")
         return
 
     # Check if the item was a final sale
