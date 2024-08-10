@@ -1,12 +1,42 @@
 # retail store return policy
 
-return_policy = {}
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
+
+
+# Policy for returning items at a retail store
+return_policy = {
+    "max_days": 90,
+    "food_return": False,
+    "final_sale": False,
+    "original_condition": True,
+}
+
+
+def yes_no_input(prompt):
+    while True:
+        response = input(prompt).strip().lower()
+        if response in ["yes", "no"]:
+            return response
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
+
+
+def log_and_print(message):
+    """Log the message and print it."""
+    logging.info(message)
+    print(message)
 
 
 def main():
     print("This program if you are eligible to return your item at the store.")
+    logging.info("return denied: customer does not have a receipt")
+
     # ask the user if they have a receipt
-    receipt = input("Do you have your reciept: yes/no? ")
+    if not yes_no_input("Do you have a receipt: yes/no? "):
+        log_and_print("You cannot return your item.")
 
     # if the user does not have a receipt, they cannot return the item
     if receipt == "no":
