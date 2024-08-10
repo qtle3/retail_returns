@@ -67,23 +67,17 @@ def main():
     # ask the user if the item is in original condition
     if (
         not yes_no_input("Is the item in originl condition: yes/no? ")
-        and not return_policy["original_condition"]
+        and return_policy["original_condition"]
     ):
         log_and_print("Return denied: Item is not in original condition.")
         return
 
     # Check if the item was a final sale
-    final_sale = input("Was the item marked as 'Final Sale': yes/no? ").strip().lower()
-    if final_sale == "yes":
-        print("You cannot return your item.")
-        return
-
-    # Check the condition of the item
-    condition = (
-        input("Is the item in original, unused condition: yes/no? ").strip().lower()
-    )
-    if condition == "no":
-        print("You cannot return your item.")
+    if (
+        not yes_no_input("Was the item a final sale: yes/no? ")
+        and not return_policy["final_sale"]
+    ):
+        log_and_print("Return denied: Item was a final sale.")
         return
 
     print("You can return your item!")
