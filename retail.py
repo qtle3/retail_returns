@@ -24,6 +24,15 @@ def yes_no_input(prompt):
             print("Invalid input. Please enter 'yes' or 'no'.")
 
 
+def numeric_input(prompt):
+    """Prompt the user for an integer value."""
+    while True:
+        try:
+            return int(input(prompt).strip())
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+
+
 def log_and_print(message):
     """Log the message and print it."""
     logging.info(message)
@@ -40,9 +49,9 @@ def main():
         return
 
     # ask the user if it has been past 90 days
-    days = input("Has it been past 90 days: yes/no? ")
-    if days == "yes":
-        print("You cannot return your item.")
+    days = numeric_input("How many days has it been since the purchase? ")
+    if days > return_policy["max_days"]:
+        log_and_print("You cannot return your item.")
         return
 
     # ask the user if it is a food item
